@@ -139,26 +139,32 @@
             font-weight: bold;
         }
 
-        /* --- BOTÓN WHATSAPP FLOTANTE --- */
-        .wa-float {
-            position: fixed;
-            width: 70px;
-            height: 70px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+       /* --- BOTÓN WHATSAPP FLOTANTE CORREGIDO --- */
+.wa-float {
+    position: fixed;
+    width: 80px;           /* Círculo más grande */
+    height: 80px;          /* Círculo más grande */
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    border-radius: 50%;    /* Círculo perfecto */
+    display: flex;         /* Centrado automático */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+    z-index: 10000;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+/* Esta es la parte que hace que el SVG se vea grande */
+.wa-float img {
+    width: 65%;            /* Ajusta este % si lo quieres aún más grande */
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
 
         .wa-float:hover {
             transform: scale(1.1);
@@ -178,7 +184,7 @@
 <header>
     <div class="container">
         <div class="logo-container">
-            <img src="lion_logo.jpg" alt="Powertroniz Logo" class="logo-img">
+            <img src="lion_logo.png" alt="Powertroniz Logo" class="logo-img">
         </div>
         <h1>POWERTRONIZ</h1>
         <p>Servicio Técnico de Televisores</p>
@@ -211,9 +217,7 @@
 </section>
 
 <a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="wa-float" target="_blank">
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
-        <path d="M12.031 6.172c-2.32 0-4.591.899-6.393 2.505-3.906 3.48-4.009 9.397-.233 13.003l-1.072 3.907 4.072-1.054c1.11.583 2.348.889 3.611.891h.005c4.605 0 8.323-3.713 8.325-8.318a8.31 8.31 0 0 0-8.315-8.334zm5.411 11.547c-.223.633-1.29 1.166-1.776 1.233-.487.067-.974.067-2.906-.699-2.28-.904-3.722-3.197-3.836-3.348-.114-.151-.93-1.227-.93-2.34s.583-1.661.79-1.89c.207-.229.451-.286.6-.286h.423c.135 0 .315-.051.488.35.188.437.633 1.542.688 1.654.055.113.09.245.015.396-.075.151-.113.245-.226.377-.113.131-.237.293-.338.396-.102.102-.207.214-.09.414.117.2 1.517 2.457 2.76 3.56 1.13 1.002 2.083 1.312 2.376 1.458.293.146.463.123.636-.075.173-.197.744-.863.944-1.157.202-.294.404-.245.674-.146.27.098 1.71.807 2.003.955.293.148.488.221.558.341.071.121.071.696-.152 1.329z"/>
-    </svg>
+    <img src="WhatsApp.svg" alt="Whatsapp de Powertroniz">
 </a>
 
 <footer>
