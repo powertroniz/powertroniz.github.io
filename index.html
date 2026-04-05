@@ -13,7 +13,6 @@
             --text-light: #e0e0e0;
             --card-bg: #1e1e1e;
             --accent-green: #2ecc71;
-            --hover-orange: #e68a00;
         }
 
         body {
@@ -21,104 +20,117 @@
             margin: 0;
             background-color: var(--background-dark);
             color: var(--text-light);
-            line-height: 1.6;
+            overflow-x: hidden; /* Evita desplazamientos laterales */
         }
 
+        /* --- CABECERA (LOGO DE FONDO Y COMPACTA) --- */
+        header {
+    background: url('lion_logo.png'); /* Eliminé el gradiente para que se vea nítido */
+    background-size: 100%; /* Cambiado a contain para que el logo circular no se corte */
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 180px 0; /* Ajusta esta altura para que se vea todo el logo circular */
+    border-bottom: 5px solid var(--primary-yellow);
+    width: 100%;
+    margin-bottom: 20px; /* Espacio para que el texto no se pegue a la línea amarilla */
+}
+
+/* --- Añade esta nueva regla para centrar el texto abajo --- */
+.brand-title-section {
+    text-align: center;
+    width: 100%;
+    padding: 0 15px; /* Margen de seguridad para móviles */
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Espacio antes de la descripción */
+}
+
+.brand-title-section h1 {
+    color: white; /* O var(--primary-yellow) si prefieres */
+    font-size: 2.8rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    /* Ya no es tan necesario el text-shadow, pero puedes dejarlo */
+}
+
+.brand-title-section p {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    margin: 5px 0 0 0;
+}
+
+header p, header span { 
+    text-align: center;
+    display: block;     /* Hace que el subtítulo se comporte como bloque y respete el centrado */
+    width: 110%;
+}
+
+
+        /* --- CONTENEDORES Y SECCIONES --- */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* --- CABECERA --- */
-        header {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, #ff6600 100%);
-            padding: 50px 0;
-            text-align: center;
-            border-bottom: 5px solid var(--primary-yellow);
-        }
-
-        .logo-container {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            background-color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-img {
-            max-width: 90%;
-            height: auto;
-        }
-
-        header h1 {
-            color: white;
-            font-size: 3rem;
-            margin-top: 20px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        header p {
-            color: white;
-            font-size: 1.2rem;
-            margin: 0;
-            opacity: 0.9;
-        }
-
-        /* --- SECCIÓN DESCRIPCIÓN --- */
         .description-section {
-            padding: 60px 0;
+            padding: 50px 0;
             text-align: center;
         }
 
         .description-section h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--primary-yellow);
             margin-bottom: 20px;
         }
 
         .description-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             max-width: 800px;
-            margin: 0 auto;
-            margin-bottom: 40px;
+            margin: 0 auto 30px auto;
         }
 
-        /* --- SERVICIOS --- */
-        .services-section {
-            padding: 60px 0;
+        .call-to-action {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary-orange), var(--primary-yellow));
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.3s;
         }
+
+        .call-to-action:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 153, 0, 0.4);
+        }
+
+        /* --- TARJETAS DE SERVICIOS --- */
+        .services-section { padding-bottom: 60px; }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
 
         .service-card {
             background-color: var(--card-bg);
-            border: 2px solid transparent;
             border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s ease;
+            padding: 25px;
+            border-left: 5px solid var(--primary-orange);
+            transition: 0.3s;
         }
 
         .service-card:hover {
-            border-color: var(--primary-yellow);
             transform: translateY(-5px);
+            border-color: var(--primary-yellow);
         }
 
         .service-card h3 {
             color: var(--primary-orange);
-            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
@@ -128,7 +140,7 @@
         }
 
         .service-list li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
         }
@@ -139,102 +151,175 @@
             font-weight: bold;
         }
 
-       /* --- BOTÓN WHATSAPP FLOTANTE CORREGIDO --- */
-.wa-float {
-    position: fixed;
-    width: 80px;           /* Círculo más grande */
-    height: 80px;          /* Círculo más grande */
-    bottom: 30px;
-    right: 30px;
-    background-color: #25d366;
-    border-radius: 50%;    /* Círculo perfecto */
-    display: flex;         /* Centrado automático */
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
-    z-index: 10000;
-    transition: 0.3s;
-    text-decoration: none;
-}
-
-/* Esta es la parte que hace que el SVG se vea grande */
-.wa-float img {
-    width: 65%;            /* Ajusta este % si lo quieres aún más grande */
-    height: auto;
-    display: block;
-    object-fit: contain;
-}
-
-
-        .wa-float:hover {
-            transform: scale(1.1);
-            background-color: #128c7e;
+        /* --- WHATSAPP FLOTANTE --- */
+        .wa-float {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.5);
+            z-index: 10000;
+            transition: 0.3s;
         }
 
+        .wa-float img { width: 80%; }
+        .wa-float:hover { transform: scale(1.1); }
+
+        /* --- PIE DE PÁGINA (BORDE CORREGIDO) --- */
         footer {
             background-color: #000;
             padding: 30px 0;
             text-align: center;
             border-top: 3px solid var(--primary-orange);
+            width: 110%;
+            margin-top: 40px;
         }
+
+        footer p {
+            margin: 5px 0;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* --- ADAPTABILIDAD MÓVIL --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            header { padding: 150px 15px; }
+            .description-section h2 { font-size: 1.8rem; }
+            .wa-float { width: 60px; height: 60px; bottom: 20px; right: 20px; }
+        }
+        /* --- CARRUSEL DE IMÁGENES --- */
+.slider {
+    width: 115%;
+    height: auto;
+    margin: 30px 0;
+    overflow: hidden;
+    background: var(--card-bg);
+    padding: 20px 0;
+    border-top: 2px solid var(--primary-orange);
+    border-bottom: 2px solid var(--primary-orange);
+}
+
+.slider-track {
+    display: flex;
+    width: calc(250px * 10); /* Ajusta según el número de imágenes */
+    animation: scroll 20s linear infinite;
+}
+
+.slider-track:hover {
+    animation-play-state: paused; /* Se detiene al pasar el mouse */
+}
+
+.slide {
+    width: 250px;
+    padding: 0 10px;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-250px * 5)); } /* Cambia el 5 por la mitad de tus imágenes */
+}
+
+        
+        
+        
+        
+        
+        
+        
     </style>
 </head>
 <body>
 
 <header>
-    <div class="container">
-        <div class="logo-container">
-            <img src="lion_logo.png" alt="Powertroniz Logo" class="logo-img">
-        </div>
-        <h1>POWERTRONIZ</h1>
-        <p>Servicio Técnico de Televisores</p>
-    </div>
 </header>
-
+<div class="brand-title-section">
+  <h1>POWERTRONIZ</h1>
+  <p>   Servicio Tecnico Especializado</p>
+</div>
 <section class="description-section">
     <div class="container">
         <h2>Expertos en TV a Domicilio</h2>
         <p class="description-text">
-            Reparaciones profesionales con garantía: LG, SAMSUNG y más. 
-            Atención en **todo Villa El Salvador y Lima**.
+            Reparaciones profesionales con garantía para las marcas más reconocidas: LG, SAMSUNG,SONY y más.  
+            Atención personalizada A           DOMICILIO  
+            👉todo Lima Metropolitana 👈.
         </p>
+        <a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="call-to-action">Escribenos a nuestro WHATSAPP  para mayor informacion 📞 📝 🗓️  para un  Diagnostico y Reparacion de su Tv  </a>
     </div>
 </section>
 
 <section class="services-section">
     <div class="container">
         <div class="services-grid">
+            
             <div class="service-card">
-                <h3>Solucionamos Cualquier Falla</h3>
+                <h3>Solucionamos Fallas</h3>
                 <ul class="service-list">
-                    <li><span class="check-icon">&#10003;</span> IMÁGENES AZULES</li>
-                    <li><span class="check-icon">&#10003;</span> PUNTOS BLANCOS</li>
-                    <li><span class="check-icon">&#10003;</span> RAYAS EN PANTALLA</li>
-                    <li><span class="check-icon">&#10003;</span> IMAGEN INESTABLE,ETC.</li>  
+                    <li><span class="check-icon">✓</span> IMÁGENES AZULES</li>
+                    <li><span class="check-icon">✓</span> PUNTOS BLANCOS</li>
+                    <li><span class="check-icon">✓</span> RAYAS EN PANTALLA</li>
+                    <li><span class="check-icon">✓</span> IMAGEN INESTABLE</li>
                 </ul>
             </div>
-<div class="service -card">
-    <h3>¿ Por que elegir PowerTroniz?</h3>
-    <ul class="service-list">
-       <li><span class="check-icon">&#10003;</span> Reparacion Tecnica Especializado</li>
-       <li><span class="check-icon">&#10003;</span> Servicio comodo a Domicilio</li>
-        <li><span class="check-icon">&#10003;</span> Diagnosticos Precisos</li>
-       <li><span class="check-icon">&#10003;</span> Repuestos de Calidad y Garantia</li>
-    </ul>
+<div class="slider">
+    <div class="slider-track">
+        <div class="slide"><img src="foto1.jpg" alt="Reparación 1"></div>
+        <div class="slide"><img src="foto2.jpg" alt="Reparación 2"></div>
+        <div class="slide"><img src="foto3.jpg" alt="Reparación 3"></div>
+        <div class="slide"><img src="foto4.jpg" alt="Reparación 4"></div>
+        <div class="slide"><img src="foto5.jpg" alt="Reparación 5"></div>
+        <div class="slide"><img src="foto1.jpg" alt="Reparación 1"></div>
+        <div class="slide"><img src="foto2.jpg" alt="Reparación 2"></div>
+        <div class="slide"><img src="foto3.jpg" alt="Reparación 3"></div>
+        <div class="slide"><img src="foto4.jpg" alt="Reparación 4"></div>
+        <div class="slide"><img src="foto5.jpg" alt="Reparación 5"></div>
+    </div>
 </div>
-</div>
- </div>       
+
+
+
+
+
+
+
+            <div class="service-card">
+                <h3>¿Por qué elegirnos?</h3>
+                <ul class="service-list">
+                    <li><span class="check-icon">✓</span> Técnicos Especializados</li>
+                    <li><span class="check-icon">✓</span> Servicio a Domicilio</li>
+                    <li><span class="check-icon">✓</span> Diagnósticos Precisos</li>
+                    <li><span class="check-icon">✓</span> Repuestos con Garantía</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
 </section>
 
 <a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="wa-float" target="_blank">
-    <img src="WhatsApp.svg" alt="Whatsapp de Powertroniz">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Whatsapp">
 </a>
 
 <footer>
     <div class="container">
         <p>&copy; 2026 POWERTRONIZ. Todos los derechos reservados.</p>
+        <p>Servicio en Villa El Salvador y Lima Metropolitana.</p>
     </div>
 </footer>
 
 </body>
 </html>
+
