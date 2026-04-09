@@ -13,6 +13,7 @@
             --text-light: #e0e0e0;
             --card-bg: #1e1e1e;
             --accent-green: #2ecc71;
+            --modal-overlay: rgba(0, 0, 0, 0.9);
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -51,7 +52,7 @@
             letter-spacing: 2px;
         }
 
-        /* --- SECCIÓN DE LOGOS (CORREGIDA) --- */
+        /* --- SECCIÓN DE LOGOS --- */
         .brand-logos {
             background: #000;
             display: flex;
@@ -82,7 +83,7 @@
             padding: 0 15px;
             box-sizing: border-box;
         }
-tech-grid {
+        .tech-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
@@ -95,11 +96,13 @@ tech-grid {
             border-radius: 10px;
             cursor: pointer;
             transition: 0.2s;
+            text-align: center;
         }
         .tech-card:active { transform: scale(0.95); }
         .tech-card span { display: block; font-weight: bold; font-size: 0.8rem; color: white; }
         .tech-card small { color: var(--primary-yellow); font-size: 0.6rem; text-transform: uppercase; }
-                /* --- MODAL --- */
+
+        /* --- MODALES --- */
         .modal {
             display: none;
             position: fixed;
@@ -119,10 +122,27 @@ tech-grid {
             border: 2px solid var(--primary-orange);
             position: relative;
         }
+
+        /* Modal específico para Video */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 20000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .video-modal video {
+            width: 90%;
+            max-width: 800px;
+            border: 3px solid var(--primary-orange);
+            border-radius: 15px;
+        }
+
         .img-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
         .img-group img { width: 100%; border-radius: 10px; border: 1px solid #444; }
-        
-        
         
         .description-section {
             padding: 40px 0;
@@ -135,7 +155,7 @@ tech-grid {
             margin-bottom: 30px;
         }
 
-        /* --- BOTÓN WHATSAPP (ENSANCHADO) --- */
+        /* --- BOTÓN WHATSAPP --- */
         .call-to-action {
             display: block;
             background: linear-gradient(to right, var(--primary-orange), var(--primary-yellow));
@@ -167,7 +187,7 @@ tech-grid {
             box-sizing: border-box;
         }
 
-        /* --- SLIDER (CORREGIDO AL 100%) --- */
+        /* --- SLIDER (MODIFICADO PARA GIFS) --- */
         .slider {
             width: 100%;
             overflow: hidden;
@@ -180,23 +200,26 @@ tech-grid {
 
         .slider-track {
             display: flex;
-            width: calc(200px * 10);
-            animation: scroll 20s linear infinite;
+            /* El width se calcula dinámicamente en JS */
+            animation: scroll 30s linear infinite;
         }
 
         .slide {
             width: 200px;
             padding: 0 10px;
+            flex-shrink: 0;
         }
 
         .slide img {
             width: 100%;
             border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid #444;
         }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-200px * 5)); }
+            100% { transform: translateX(-50%); } /* Ajustado para el duplicado infinito */
         }
 
         /* --- WHATSAPP FLOTANTE --- */
@@ -237,7 +260,7 @@ tech-grid {
   <div class="brand-logos">
     <img src="samsung.png" alt="Samsung">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg" alt="LG">
-    <img src="Hisense.png" alt="Hisense">
+    <img src="hisense.png" alt="Hisense">
     <img src="sony.png" alt="Sony">
     <img src="jvc.png" alt="JVC">
     <img src="aoc.png" alt="AOC">
@@ -246,6 +269,7 @@ tech-grid {
     <img src="daewoo.png" alt="Daewoo">
   </div>
 </div>
+
 <section class="container">
     <div class="description-section">
         <h2 style="color: var(--primary-yellow);">Biblioteca Técnica</h2>
@@ -255,15 +279,22 @@ tech-grid {
             <div class="tech-card" onclick="openTech('plasma')"><small>SISTEMA</small><span>TV PLASMA</span></div>
             <div class="tech-card" onclick="openTech('lcd')"><small>SISTEMA</small><span>TV LCD</span></div>
             <div class="tech-card" onclick="openTech('led')"><small>SISTEMA</small><span>TV LED </span></div>
-            <div class="tech-card" onclick="openTech('oled')"><small>SISTEMA</small><span>TV OLED </span></div> </div>
-              </div>
-
+            <div class="tech-card" onclick="openTech('oled')"><small>SISTEMA</small><span>TV OLED </span></div> 
+        </div>
+    </div>
 </section>
+
 <div id="techModal" class="modal">
     <div class="modal-content">
         <span style="position:absolute; right:15px; top:10px; font-size:30px; cursor:pointer;" onclick="closeModal()">&times;</span>
         <div id="modalBody"></div>
     </div>
+</div>
+
+<div id="videoModal" class="video-modal" onclick="cerrarVideo()">
+    <video id="reproductor" controls loop playsinline>
+        <source src="" type="video/mp4">
+    </video>
 </div>
 
 <section class="description-section">
@@ -293,18 +324,8 @@ tech-grid {
             </div>
 
             <div class="slider">
-                <div class="slider-track">
-                    <div class="slide"><img src="foto1.jpg"></div>
-                    <div class="slide"><img src="foto2.jpg"></div>
-                    <div class="slide"><img src="foto3.jpg"></div>
-                    <div class="slide"><img src="foto4.jpg"></div>
-                    <div class="slide"><img src="foto5.jpg"></div>
-                    <div class="slide"><img src="foto1.jpg"></div>
-                    <div class="slide"><img src="foto2.jpg"></div>
-                    <div class="slide"><img src="foto3.jpg"></div>
-                    <div class="slide"><img src="foto4.jpg"></div>
-                    <div class="slide"><img src="foto5.jpg"></div>
-                </div>
+                <div class="slider-track" id="carruselFallas">
+                    </div>
             </div>
 
             <div class="service-card">
@@ -330,82 +351,100 @@ tech-grid {
         <p>Villa El Salvador y Lima Metropolitana.</p>
     </div>
 </footer>
-  <script>   const data = {
+
+<script>
+    // --- DATOS DE LA BIBLIOTECA ---
+    const data = {
         plasma: {
             title: "Tecnología Tv Plasma",
-            desc: "Sistema de funcionamiento y configuracion general.",
-            imgs: [
-                "plasma1.jpg",
-                "plasma2.jpg",
-                "plasma3.jpg"
-            ]
+            desc: "Sistema de funcionamiento y electronica.",
+            imgs: ["plasma1.jpg", "plasma2.jpg", "plasma3.jpg"]
         },
         lcd: {
             title: "Tecnología Tv Lcd",
-            desc: "Sistema de funcionamiento y configuracion general.",
-            imgs: [
-                "lcd1.jpg",
-                "lcd2.jpg",
-                "lcd3.jpg"
-            ]
+            desc: "Esquemas de las partes de la pantalla y tarjetas electornicas.",
+            imgs: ["lcd1.jpg", "lcd2.jpg", "lcd3.jpg"]
         },
         led: {
             title: "Tecnología Tv Led",
-            desc: "Sistema de funcionamiento y configuracion general.",
-            imgs: [
-                "led1.jpg",
-                "led2.jpg",
-                "led3.jpg"
-            ]
+            desc: "Funcionaliento y descricion de las partes electronicas.",
+            imgs: ["led1.jpg", "led2.jpg", "led3.jpg"]
         },
         oled: {
             title: "Tecnología Tv Oled",
-            desc: "Sistema de funcionamiento y configuracion general.",
+            desc: "Funcionaliento y descricion de las partes electronicas.",
             imgs: [
-                "oled1.jpg",
-                "oled2.jpg"
+                "https://i.ibb.co/5F6G7H8/Diagrama-OLED.png",
+                "https://i.ibb.co/9J0K1L2/Diagrama-QLED.png",
+                "https://i.ibb.co/L6VvDqS/Powertroniz-Logo-Lion.png"
             ]
         }
-        
     };
+
+    // --- BASE DE DATOS DE FALLAS (GIF + VIDEO) ---
+    const fallasTecnicas = [
+        { gif: "falla1.gif", vid: "video1.mp4" },
+        { gif: "falla2.gif", vid: "video2.mp4" },
+        { gif: "falla3.gif", vid: "video3.mp4" },
+        { gif: "falla4.gif", vid: "video4.mp4" },
+        { gif: "falla5.gif", vid: "video5.mp4" },
+        { gif: "falla6.gif", vid: "video6.mp4" },
+        { gif: "falla7.gif", vid: "video7.mp4" },
+        { gif: "falla8.gif", vid: "video8.mp4" }
+    ];
+
+    // Cargar Carrusel
+    function inicializarCarrusel() {
+        const track = document.getElementById('carruselFallas');
+        let html = "";
+        fallasTecnicas.forEach(f => {
+            html += `<div class="slide"><img src="${f.gif}" onclick="abrirVideo('${f.vid}')"></div>`;
+        });
+        track.innerHTML = html + html; // Duplicado para loop infinito
+        track.style.width = `calc(200px * ${fallasTecnicas.length * 2})`;
+    }
+
+    // Funciones de Modal Biblioteca
     function openTech(type) {
-    const item = data[type];
-    const modalBody = document.getElementById('modalBody');
-    
-    // Limpiamos el modal por completo antes de cargar
-    modalBody.innerHTML = ""; 
-
-    let html = `<h2>${item.title}</h2><p>${item.desc}</p><div class="img-group">`;
-    
-    item.imgs.forEach(img => {
-        // Forzamos la actualización de la imagen en GitHub con un timestamp
-        // Esto evita que el navegador muestre la foto antigua guardada en memoria
-        const antiCache = "?v=" + new Date().getTime();
-        
-        html += `
-            <div style="margin-bottom:15px; background:#000; border-radius:10px; overflow:hidden; border:1px solid #333;">
-                <img src="${img}${antiCache}" 
-                     style="width:100%; display:block;" 
-                     alt="Powertroniz Tech"
-                     onerror="this.onerror=null; this.src='https://via.placeholder.com/500x300?text=Error:+Archivo+${img}+no+subido+a+GitHub';">
-            </div>`;
-    });
-    
-    html += `</div><p style="color:var(--primary-orange); margin-top:15px; font-weight:bold;">POWERTRONIZ v.2026 | Villa El Salvador</p>`;
-    
-    modalBody.innerHTML = html;
-    document.getElementById('techModal').style.display = 'block';
-}
-
-
-
-
-
+        const item = data[type];
+        const modalBody = document.getElementById('modalBody');
+        modalBody.innerHTML = ""; 
+        let html = `<h2>${item.title}</h2><p>${item.desc}</p><div class="img-group">`;
+        item.imgs.forEach(img => {
+            const version = "?v=" + new Date().getTime();
+            html += `<img src="${img}${version}" style="width:100%; margin-bottom:10px; border-radius:10px;">`;
+        });
+        html += `</div><p style="color:var(--primary-orange); margin-top:15px; font-weight:bold;">Powertroniz v.2026</p>`;
+        modalBody.innerHTML = html;
+        document.getElementById('techModal').style.display = 'block';
+    }
 
     function closeModal() { document.getElementById('techModal').style.display = 'none'; }
-    window.onclick = function(event) { if (event.target.className === 'modal') closeModal(); }
-</script>
 
+    // Funciones de Modal Video
+    function abrirVideo(ruta) {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('reproductor');
+        video.src = ruta;
+        modal.style.display = 'flex';
+        video.play();
+    }
+
+    function cerrarVideo() {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('reproductor');
+        video.pause();
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) { 
+        if (event.target.className === 'modal') closeModal(); 
+    }
+
+    window.onload = inicializarCarrusel;
+</script>
 
 </body>
 </html>
+
+
