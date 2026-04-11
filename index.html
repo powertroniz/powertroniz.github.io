@@ -3,55 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POWERTRONIZ | Servicio Técnico</title>
+    <title>POWERTRONIZ | Servicio Premium</title>
     <style>
-        /* --- ESTILOS GENERALES --- */
         :root {
-            --primary-orange: #ff9900;
-            --primary-yellow: #ffcc00;
-            --background-dark: #121212;
-            --text-light: #e0e0e0;
-            --card-bg: #1e1e1e;
-            --accent-green: #2ecc71;
-            --modal-overlay: rgba(0, 0, 0, 0.9);
+            --neon-orange: #ff9d00;
+            --neon-yellow: #fff200;
+            --bg-deep: #050505;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --accent-green: #00ff88;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* --- CABECERA --- */
-        header {
-            background: url('lion_logo.png'); 
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 150px 0; 
-            border-bottom: 5px solid var(--primary-yellow);
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .brand-title-section {
-            text-align: center;
-            width: 100%;
-            padding: 0 10px;
-            box-sizing: border-box;
-        }
-
-        .brand-title-section h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
         /* --- SECCIÓN DE LOGOS --- */
         .brand-logos {
             background: #000;
@@ -75,672 +35,124 @@
             filter: brightness(1.1);
         }
 
-        /* --- CONTENEDORES --- */
-        .container {
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .tech-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            padding: 15px 5px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
-        }
-        .tech-card:active { transform: scale(0.95); }
-        .tech-card span { display: block; font-weight: bold; font-size: 0.8rem; color: white; }
-        .tech-card small { color: var(--primary-yellow); font-size: 0.6rem; text-transform: uppercase; }
 
-        /* --- MODAL BIBLIOTECA --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10001;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: var(--modal-overlay);
-            overflow-y: auto;
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: var(--card-bg);
-            margin: 10% auto;
-            padding: 25px;
-            width: 85%;
-            max-width: 500px;
-            border-radius: 20px;
-            border: 2px solid var(--primary-orange);
-            position: relative;
+
+
+        @keyframes fluidBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* --- MODAL DE VIDEO (NUEVO) --- */
-        .video-modal {
-            display: none;
-            position: fixed;
-            z-index: 20000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            align-items: center;
-            justify-content: center;
-        }
-        .video-container {
-            position: relative;
-            width: 90%;
-            max-width: 800px;
-        }
-        .video-modal video {
-            width: 100%;
-            border: 3px solid var(--primary-orange);
-            border-radius: 15px;
-        }
-        /* Bloquear botón de volumen por CSS */
-        video::-webkit-media-controls-mute-button,
-        video::-webkit-media-controls-volume-slider {
-            display: none !important;
-        }
-        .btn-cerrar-video {
-            position: absolute;
-            top: -45px;
-            right: 0;
-            background: var(--primary-orange);
-            color: black;
-            border: none;
-            padding: 8px 15px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .img-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .img-group img { width: 100%; border-radius: 10px; border: 1px solid #444; }
-        
-        .description-section {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .description-text {
-            font-size: 1.1rem;
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        /* --- BOTÓN WHATSAPP --- */
-        .call-to-action {
-            display: block;
-            background: linear-gradient(to right, var(--primary-orange), var(--primary-yellow));
-            color: #000;
-            padding: 18px 10px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            margin: 10px auto;
-            width: 95%;
-            box-sizing: border-box;
-            font-size: 0.9rem;
-        }
-
-        /* --- TARJETAS DE SERVICIOS --- */
-        .services-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .service-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 8px solid var(--primary-orange);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* --- SLIDER DE VIDEOS VIVOS --- */
-        .slider {
-            width: 100%;
-            overflow: hidden;
-            background: var(--card-bg);
-            padding: 15px 0;
-            margin: 20px 0;
-            border-top: 2px solid var(--primary-orange);
-            border-bottom: 2px solid var(--primary-orange);
-        }
-
-        .slider-track {
-            display: flex;
-            animation: scroll 35s linear infinite;
-        }
-
-        .slide {
-            width: 220px;
-            padding: 0 10px;
-            flex-shrink: 0;
-        }
-
-        .video-mini {
-            width: 100%;
-            height: 125px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 2px solid #444;
-            background: #000;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
-        }
-
-        /* --- WHATSAPP FLOTANTE --- */
-        .wa-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-        .wa-float img { width: 70%; }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: #000;
-            padding: 25px 0;
-            text-align: center;
-            border-top: 3px solid var(--primary-orange);
-            width: 100%;
-            margin-top: 30px;
-        }
-    </style>
-</head>
-<body>
-
-<header></header>
-
-<div class="brand-title-section">
-  <h1>POWERTRONIZ</h1>
-  <p>Servicio Técnico Especializado</p>
-  
-  <div class="brand-logos">
-    <img src="samsung.png" alt="Samsung">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg" alt="LG">
-    <img src="Hisense.png" alt="Hisense">
-    <img src="sony.png" alt="Sony">
-    <img src="jvc.png" alt="JVC">
-    <img src="aoc.png" alt="AOC">
-    <img src="tcl.png" alt="TCL">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg" alt="Hyundai">
-    <img src="daewoo.png" alt="Daewoo">
-  </div>
-</div>
-
-<section class="container">
-    <div class="description-section">
-        <h2 style="color: var(--primary-yellow);">Biblioteca Técnica</h2>
-        <p>Seleccione una categoría para ver información:</p>
-        
-        <div class="tech-grid">
-            <div class="tech-card" onclick="openTech('plasma')"><small>SISTEMA</small><span>TV PLASMA</span></div>
-            <div class="tech-card" onclick="openTech('lcd')"><small>SISTEMA</small><span>TV LCD</span></div>
-            <div class="tech-card" onclick="openTech('led')"><small>SISTEMA</small><span>TV LED </span></div>
-            <div class="tech-card" onclick="openTech('oled')"><small>SISTEMA</small><span>TV OLED </span></div> 
-        </div>
-    </div>
-</section>
-
-<div id="techModal" class="modal">
-    <div class="modal-content">
-        <span style="position:absolute; right:15px; top:10px; font-size:30px; cursor:pointer;" onclick="closeModal()">&times;</span>
-        <div id="modalBody"></div>
-    </div>
-</div>
-
-<div id="videoModal" class="video-modal" onclick="cerrarVideoFuera(event)">
-    <div class="video-container">
-        <button class="btn-cerrar-video" onclick="cerrarVideo()">CERRAR X</button>
-        <video id="reproductor" controls playsinline muted controlsList="nodownload noplaybackrate">
-            <source src="" type="video/mp4">
-        </video>
-    </div>
-</div>
-
-<section class="description-section">
-    <div class="container">
-        <h2 style="color: var(--primary-yellow);">Expertos en TV a Domicilio</h2>
-        <p class="description-text">
-            Reparaciones profesionales con garantía para las marcas más reconocidas: LG, SAMSUNG, SONY y más.  
-            Atención personalizada A DOMICILIO en todo Lima Metropolitana.
-        </p>
-        <a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="call-to-action">
-            Escríbenos al WhatsApp aquí 📞
-        </a>
-    </div>
-</section>
-
-<section class="services-section">
-    <div class="container">
-        <div class="services-grid">
-            <div class="service-card">
-                <h3 style="color: var(--primary-orange); margin-top:0;">Solucionamos Fallas</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li><span style="color: var(--accent-green);">✓</span> IMÁGENES AZULES</li>
-                    <li><span style="color: var(--accent-green);">✓</span> PUNTOS BLANCOS</li>
-                    <li><span style="color: var(--accent-green);">✓</span> RAYAS EN PANTALLA</li>
-                    <li><span style="color: var(--accent-green);">✓</span> IMAGEN INESTABLE</li>
-                </ul>
-            </div>
-
-            <div class="slider">
-                <div class="slider-track" id="carruselFallas">
-                    </div>
-            </div>
-
-            <div class="service-card">
-                <h3 style="color: var(--primary-orange); margin-top:0;">¿Por qué elegirnos?</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li><span style="color: var(--accent-green);">✓</span> Técnicos Especializados</li>
-                    <li><span style="color: var(--accent-green);">✓</span> Servicio a Domicilio</li>
-                    <li><span style="color: var(--accent-green);">✓</span> Diagnósticos Precisos</li>
-                    <li><span style="color: var(--accent-green);">✓</span> Repuestos con Garantía</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="wa-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Whatsapp">
-</a>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2026 POWERTRONIZ. Todos los derechos reservados.</p>
-        <p>Villa El Salvador y Lima Metropolitana.</p>
-    </div>
-</footer>
-
-<script>
-    // --- DATOS BIBLIOTECA ---
-    const data = {
-        plasma: { title: "Tecnología Tv Plasma", desc: "Sistema de funcionamiento y configuracion general.", imgs: ["plasma1.jpg", "plasma2.jpg", "plasma3.jpg"] },
-        lcd: { title: "Tecnología Tv Lcd", desc: "Sistema de funcionamiento y configuracion general.", imgs: ["lcd1.jpg", "lcd2.jpg", "lcd3.jpg"] },
-        led: { title: "Tecnología Tv Led", desc: "Sistema de funcionamiento y configuracion general.", imgs: ["led1.jpg", "led2.jpg", "led3.jpg"] },
-        oled: { title: "Tecnología Tv Oled", desc: "Sistema de funcionamiento y configuracion general.", imgs: ["oled1.jpg", "oled2.jpg"] }
-    };
-
-    // --- DATOS VIDEOS ---
-    const misVideos = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4"];
-
-    function cargarCarrusel() {
-        const track = document.getElementById('carruselFallas');
-        let html = "";
-        misVideos.forEach(v => {
-            html += `
-            <div class="slide">
-                <video class="video-mini" autoplay muted loop playsinline onclick="abrirVideo('${v}')">
-                    <source src="${v}" type="video/mp4">
-                </video>
-            </div>`;
-        });
-        track.innerHTML = html + html; 
-        track.style.width = `calc(220px * ${misVideos.length * 2})`;
-    }
-
-    function abrirVideo(url) {
-        const modal = document.getElementById('videoModal');
-        const video = document.getElementById('reproductor');
-        video.src = url;
-        video.muted = true; 
-        modal.style.display = 'flex';
-        video.play();
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POWERTRONIZ | Servicio Técnico</title>
-    <style>
-        /* --- ESTILOS GENERALES --- */
-        :root {
-            --primary-orange: #ff9900;
-            --primary-yellow: #ffcc00;
-            --background-dark: #121212;
-            --text-light: #e0e0e0;
-            --card-bg: #1e1e1e;
-            --accent-green: #2ecc71;
-            --modal-overlay: rgba(0, 0, 0, 0.9);
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: var(--background-dark);
-            color: var(--text-light);
+            background: linear-gradient(-45deg, #050505, #1a1a1a, #0a0f1e, #050505);
+            background-size: 400% 400%;
+            animation: fluidBg 15s ease infinite;
+            color: #fff;
             overflow-x: hidden;
-            width: 100%;
         }
 
         /* --- CABECERA --- */
         header {
-            background: url('lion_logo.png'); 
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 150px 0; 
-            border-bottom: 5px solid var(--primary-yellow);
-            width: 100%;
-            margin-bottom: 20px;
+            background: url('lion_logo.png') center/contain no-repeat;
+            height: 200px;
+            border-bottom: 4px solid var(--neon-orange);
+            box-shadow: 0 0 20px rgba(255, 157, 0, 0.3);
         }
 
-        .brand-title-section {
-            text-align: center;
-            width: 100%;
-            padding: 0 10px;
-            box-sizing: border-box;
-        }
+        .brand-title { text-align: center; padding: 15px; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
+        .brand-title h1 { font-size: 2.5rem; margin: 0; background: linear-gradient(to right, #fff, var(--neon-yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .brand-title-section h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* --- SECCIÓN DE LOGOS --- */
-        .brand-logos {
-            background: #000;
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 20px 10px;
-            margin: 15px 0;
-            border-top: 5px solid var(--primary-orange);
-            border-bottom: 5px solid var(--primary-orange);
-            box-sizing: border-box;
-        }
-
-        .brand-logos img {
-            height: 25px;
-            max-width: 100px;
-            object-fit: contain;
-            filter: brightness(1.1);
-        }
-
-        /* --- CONTENEDORES --- */
-        .container {
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .tech-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            padding: 15px 5px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
-        }
-        .tech-card:active { transform: scale(0.95); }
-        .tech-card span { display: block; font-weight: bold; font-size: 0.8rem; color: white; }
-        .tech-card small { color: var(--primary-yellow); font-size: 0.6rem; text-transform: uppercase; }
-
-        /* --- MODAL BIBLIOTECA --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10001;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: var(--modal-overlay);
-            overflow-y: auto;
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: var(--card-bg);
-            margin: 10% auto;
+        /* --- ZONA DE FALLAS CON TÉCNICO --- */
+        .faults-section {
+            background: var(--glass-bg);
+            margin: 15px;
             padding: 25px;
-            width: 85%;
-            max-width: 500px;
             border-radius: 20px;
-            border: 2px solid var(--primary-orange);
+            border: 1px solid rgba(255,157,0,0.4);
             position: relative;
-        }
-        
-               /* --- SECCIÓN DE REPUESTOS (NUEVA) --- */
-        .repuestos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .repuesto-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 10px;
-            border: 1px solid #333;
-            text-align: center;
-        }
-        .slider-repuesto {
-            position: relative;
-            width: 100%;
-            height: 120px;
             overflow: hidden;
-            border-radius: 8px;
-            background: #000;
-            margin-bottom: 8px;
         }
-        .slider-repuesto img {
+
+        .technician-gif {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-        .slider-repuesto img.active {
-            opacity: 1;
-        }
-        .btn-consulta-repuesto {
-            display: block;
-            background: #25d366;
-            color: black;
-            text-decoration: none;
-            padding: 5px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.7rem;
-        } 
-
-        /* --- MODAL DE VIDEO (NUEVO) --- */
-        .video-modal {
-            display: none;
-            position: fixed;
-            z-index: 20000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            align-items: center;
-            justify-content: center;
-        }
-        .video-container {
-            position: relative;
-            width: 90%;
-            max-width: 800px;
-        }
-        .video-modal video {
-            width: 100%;
-            border: 3px solid var(--primary-orange);
-            border-radius: 15px;
-        }
-        /* Bloquear botón de volumen por CSS */
-        video::-webkit-media-controls-mute-button,
-        video::-webkit-media-controls-volume-slider {
-            display: none !important;
-        }
-        .btn-cerrar-video {
-            position: absolute;
-            top: -45px;
-            right: 0;
-            background: var(--primary-orange);
-            color: black;
-            border: none;
-            padding: 8px 15px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .img-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .img-group img { width: 100%; border-radius: 10px; border: 1px solid #444; }
-        
-        .description-section {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .description-text {
-            font-size: 1.1rem;
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        /* --- BOTÓN WHATSAPP --- */
-        .call-to-action {
-            display: block;
-            background: linear-gradient(to right, var(--primary-orange), var(--primary-yellow));
-            color: #000;
-            padding: 18px 10px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            margin: 10px auto;
-            width: 95%;
-            box-sizing: border-box;
-            font-size: 0.9rem;
-        }
-
-        /* --- TARJETAS DE SERVICIOS --- */
-        .services-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .service-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 8px solid var(--primary-orange);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* --- SLIDER DE VIDEOS VIVOS --- */
-        .slider {
-            width: 100%;
-            overflow: hidden;
-            background: var(--card-bg);
-            padding: 15px 0;
-            margin: 20px 0;
-            border-top: 2px solid var(--primary-orange);
-            border-bottom: 2px solid var(--primary-orange);
-        }
-
-        .slider-track {
-            display: flex;
-            animation: scroll 35s linear infinite;
-        }
-
-        .slide {
-            width: 220px;
-            padding: 0 10px;
-            flex-shrink: 0;
-        }
-
-        .video-mini {
-            width: 100%;
-            height: 125px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 2px solid #444;
-            background: #000;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
-        }
-
-        /* --- WHATSAPP FLOTANTE --- */
-        .wa-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
+            right: 10px;
+            top: 10px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
+            border: 2px solid var(--neon-orange);
+            background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJtZzZxeXo2Z3MxaXU3Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R4Z3R&ep=v1_internal_gif_by_id/3o7TKVUn7iM8FMEU24/giphy.gif') center/cover;
+            box-shadow: 0 0 15px var(--neon-orange);
         }
-        .wa-float img { width: 70%; }
 
-        /* --- FOOTER --- */
-        footer {
-            background-color: #000;
-            padding: 25px 0;
-            text-align: center;
-            border-top: 3px solid var(--primary-orange);
-            width: 100%;
-            margin-top: 30px;
+        .fault-item { display: flex; align-items: center; margin-bottom: 12px; font-weight: bold; color: var(--accent-green); }
+        .fault-item::before { content: "⚡"; margin-right: 10px; }
+
+        /* --- CARRUSEL --- */
+        .slider { width: 100%; overflow: hidden; padding: 20px 0; background: rgba(0,0,0,0.3); }
+        .slider-track { display: flex; animation: scroll 12s linear infinite; width: max-content; }
+        .slide { width: 180px; padding: 0 10px; flex-shrink: 0; }
+        .video-mini { 
+            width: 100%; height: 110px; object-fit: cover; border-radius: 12px; 
+            border: 2px solid #333; cursor: pointer; transition: 0.3s;
         }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- MODAL DE VIDEO (CIERRE TOTAL) --- */
+        .video-modal {
+            display: none; position: fixed; z-index: 20000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95);
+            align-items: center; justify-content: center; backdrop-filter: blur(8px);
+        }
+        .video-container { position: relative; width: 90%; max-width: 800px; }
+        .video-modal video { 
+            width: 100%; border: 3px solid var(--neon-orange); border-radius: 15px; 
+            box-shadow: 0 0 30px var(--neon-orange);
+        }
+        /* Deshabilitar botones de volumen */
+        video::-webkit-media-controls-mute-button,
+        video::-webkit-media-controls-volume-slider { display: none !important; }
+
+        .btn-cerrar-video {
+            position: absolute; top: -50px; right: 0; background: var(--neon-orange);
+            color: black; border: none; padding: 10px 20px; font-weight: bold;
+            border-radius: 8px; cursor: pointer; z-index: 20001;
+        }
+
+        /* --- SECCIÓN POR QUÉ ELEGIRNOS --- */
+        .why-us { padding: 20px; margin: 15px 0; }
+        .info-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 5px solid var(--neon-yellow);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+        .info-card b { color: var(--neon-orange); display: block; margin-bottom: 5px; }
+
+        /* --- BIBLIOTECA Y REPUESTOS --- */
+        .tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
+        .tech-btn { background: linear-gradient(145deg, #222, #000); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #333; }
+        .repuestos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px; }
+        .repuesto-item { background: #111; border-radius: 10px; padding: 10px; text-align: center; border: 1px solid #333; }
+        .slide-img { width: 100%; height: 70px; object-fit: cover; border-radius: 5px; display: none; }
+        .slide-img.active { display: block; }
+
+        .wa-footer-btn { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 85%; background: linear-gradient(to right, #25d366, #128c7e); color: white; padding: 18px; text-align: center; border-radius: 50px; text-decoration: none; font-weight: bold; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; padding: 20px; overflow-y: auto; }
     </style>
 </head>
 <body>
 
 <header></header>
-
-<div class="brand-title-section">
-  <h1>POWERTRONIZ</h1>
-  <p>Servicio Técnico Especializado</p>
-  
+<div class="brand-title">
+    <h1>POWERTRONIZ</h1>
+    <p style="color: var(--neon-orange); letter-spacing: 2px;">TECNOLOGÍA EN REPARACIÓN</p>
+    
   <div class="brand-logos">
     <img src="samsung.png" alt="Samsung">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg" alt="LG">
@@ -752,136 +164,74 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg" alt="Hyundai">
     <img src="daewoo.png" alt="Daewoo">
   </div>
+    
+    
+    
+    
 </div>
 
-<section class="container">
-    <div class="description-section">
-        <h2 style="color: var(--primary-yellow);">Biblioteca Técnica</h2>
-        <p>Seleccione una categoría para ver información:</p>
-        
-        <div class="tech-grid">
-            <div class="tech-card" onclick="openTech('plasma')"><small>SISTEMA</small><span>TV PLASMA</span></div>
-            <div class="tech-card" onclick="openTech('lcd')"><small>SISTEMA</small><span>TV LCD</span></div>
-            <div class="tech-card" onclick="openTech('led')"><small>SISTEMA</small><span>TV LED </span></div>
-            <div class="tech-card" onclick="openTech('oled')"><small>SISTEMA</small><span>TV OLED </span></div> 
-        </div>
-    </div>
-</section>
-
-<div id="techModal" class="modal">
-    <div class="modal-content">
-        <span style="position:absolute; right:15px; top:10px; font-size:30px; cursor:pointer;" onclick="closeModal()">&times;</span>
-        <div id="modalBody"></div>
-    </div>
+<div class="faults-section">
+    <div class="technician-gif"></div>
+    <h2 style="color: var(--neon-yellow); margin-top: 0;">Fallas de Imagen</h2>
+    <div class="fault-item">IMÁGENES AZULES / PUNTOS</div>
+    <div class="fault-item">RAYAS Y LÍNEAS</div>
+    <div class="fault-item">IMAGEN DOBLE O INESTABLE</div>
+    <div class="fault-item">PANTALLA OSCURA (LEDS)</div>
 </div>
 
-<div id="videoModal" class="video-modal" onclick="cerrarVideoFuera(event)">
-    <div class="video-container">
-        <button class="btn-cerrar-video" onclick="cerrarVideo()">CERRAR X</button>
-        <video id="reproductor" controls playsinline muted controlsList="nodownload noplaybackrate">
+<div class="slider">
+    <div class="slider-track" id="carruselFallas"></div>
+</div>
+
+<div class="why-us">
+    <h2 style="color: var(--neon-yellow); text-align: center;">¿Por qué elegir Powertroniz?</h2>
+    <div class="info-card"><b>🏆 EXPERIENCIA TÉCNICA</b> Especialistas en recuperación de paneles LED/LCD y programación de PMICs.</div>
+    <div class="info-card"><b>🏠 SERVICIO A DOMICILIO</b> Reparamos en la comodidad de tu hogar en todo Lima Metropolitana.</div>
+    <div class="info-card"><b>💎 GARANTÍA REAL</b> Utilizamos repuestos originales y certificados para asegurar la vida de tu TV.</div>
+    <div class="info-card"><b>⚡ RAPIDEZ Y PRECISIÓN</b> Diagnósticos exactos sin adivinanzas, directo a la solución.</div>
+</div>
+
+<h2 style="text-align: center; color: var(--neon-orange);">BIBLIOTECA TÉCNICA</h2>
+<div class="tech-grid">
+    <div class="tech-btn" onclick="openTech('plasma')"><b>PLASMA</b></div>
+    <div class="tech-btn" onclick="openTech('lcd')"><b>LCD</b></div>
+    <div class="tech-btn" onclick="openTech('led')"><b>LED</b></div>
+    <div class="tech-btn" onclick="openTech('oled')"><b>OLED</b></div>
+</div>
+
+<div class="repuestos-grid">
+    <div class="repuesto-item"><div class="r-slider"><img src="fuente1.jpg" class="slide-img active"><img src="fuente2.jpg" class="slide-img"></div><small>FUENTES</small></div>
+    <div class="repuesto-item"><div class="r-slider"><img src="main1.jpg" class="slide-img active"><img src="main2.jpg" class="slide-img"></div><small>MAINS</small></div>
+    <div class="repuesto-item"><div class="r-slider"><img src="tcon1.jpg" class="slide-img active"><img src="tcon2.jpg" class="slide-img"></div><small>T-CON</small></div>
+</div>
+
+<a href="https://wa.me/51963514184" class="wa-footer-btn">WHATSAPP DIRECTO 📞</a>
+
+<div id="videoModal" class="video-modal" onclick="cerrarVideo()">
+    <div class="video-container" onclick="event.stopPropagation()">
+        <button class="btn-cerrar-video" onclick="cerrarVideo()">CERRAR [X]</button>
+        <video id="reproductor" loop muted playsinline>
             <source src="" type="video/mp4">
         </video>
     </div>
 </div>
 
-<section class="description-section">
-    <div class="container">
-        <h2 style="color: var(--primary-yellow);">Expertos en TV a Domicilio</h2>
-        <p class="description-text">
-            Reparaciones profesionales con garantía para las marcas más reconocidas: LG, SAMSUNG, SONY y más.  
-            Atención personalizada A DOMICILIO en todo Lima Metropolitana.
-        </p>
-        <a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="call-to-action">
-            Escríbenos al WhatsApp aquí 📞
-        </a>
+<div id="modalTech" class="modal">
+    <div style="background: #111; padding: 20px; border-radius: 15px; border: 1px solid var(--neon-orange);">
+        <span onclick="closeModal()" style="float: right; font-size: 30px; color: var(--neon-orange); cursor:pointer;">&times;</span>
+        <div id="mContent"></div>
     </div>
-</section>
-
-<section class="services-section">
-    <div class="container">
-        <div class="services-grid">
-            <div class="service-card">
-                <h3 style="color: var(--primary-orange); margin-top:0;">Solucionamos Fallas</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li><span style="color: var(--accent-green);">✓</span> IMÁGENES AZULES</li>
-                    <li><span style="color: var(--accent-green);">✓</span> PUNTOS BLANCOS</li>
-                    <li><span style="color: var(--accent-green);">✓</span> RAYAS EN PANTALLA</li>
-                    <li><span style="color: var(--accent-green);">✓</span> IMAGEN INESTABLE</li>
-                </ul>
-            </div>
-
-            <div class="slider">
-                <div class="slider-track" id="carruselFallas">
-                    </div>
-            </div>
-
-            <div class="service-card">
-                <h3 style="color: var(--primary-orange); margin-top:0;">¿Por qué elegirnos?</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li><span style="color: var(--accent-green);">✓</span> Técnicos Especializados</li>
-                    <li><span style="color: var(--accent-green);">✓</span> Servicio a Domicilio</li>
-                    <li><span style="color: var(--accent-green);">✓</span> Diagnósticos Precisos</li>
-                    <li><span style="color: var(--accent-green);">✓</span> Repuestos con Garantía</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="container">
-    <h2 style="color: var(--primary-yellow); text-align: center; font-size: 1.2rem;">Repuestos Originales</h2>
-    <div class="repuestos-grid">
-        <div class="repuesto-card">
-            <div class="slider-repuesto">
-                <img src="fuente1.jpg" class="active" onerror="this.src='https://via.placeholder.com/200x120?text=Fuente+A'">
-                <img src="fuente2.jpg" onerror="this.src='https://via.placeholder.com/200x120?text=Fuente+B'">
-            </div>
-            <span style="font-size: 0.7rem; color: white; display: block; margin-bottom: 5px;">FUENTES</span>
-            <a href="https://wa.me/51963514184?text=Consulta+Fuente" class="btn-consulta-repuesto">STOCK</a>
-        </div>
-        <div class="repuesto-card">
-            <div class="slider-repuesto">
-                <img src="main1.jpg" class="active" onerror="this.src='https://via.placeholder.com/200x120?text=Main+A'">
-                <img src="main2.jpg" onerror="this.src='https://via.placeholder.com/200x120?text=Main+B'">
-            </div>
-            <span style="font-size: 0.7rem; color: white; display: block; margin-bottom: 5px;">MAINBOARDS</span>
-            <a href="https://wa.me/51963514184?text=Consulta+Main" class="btn-consulta-repuesto">STOCK</a>
-        </div>
-        <div class="repuesto-card">
-            <div class="slider-repuesto">
-                <img src="tcon1.jpg" class="active" onerror="this.src='https://via.placeholder.com/200x120?text=Tcon+A'">
-                <img src="tcon2.jpg" onerror="this.src='https://via.placeholder.com/200x120?text=Tcon+B'">
-            </div>
-            <span style="font-size: 0.7rem; color: white; display: block; margin-bottom: 5px;">T-CON</span>
-            <a href="https://wa.me/51963514184?text=Consulta+Tcon" class="btn-consulta-repuesto">STOCK</a>
-        </div>
-    </div>
-</section>
-
-
-
-
-<a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="wa-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Whatsapp">
-</a>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2026 POWERTRONIZ. Todos los derechos reservados.</p>
-        <p>Villa El Salvador y Lima Metropolitana.</p>
-    </div>
-</footer>
+</div>
 
 <script>
-    // --- DATOS BIBLIOTECA ---
     const data = {
-        plasma: { title: "Tecnología Tv Plasma", desc: "Sistema de funcionamiento y configuracion general.", imgs: ["plasma1.jpg", "plasma2.jpg", "plasma3.jpg"] },
-        lcd: { title: "Tecnología Tv Lcd", desc: "Sistema de funcionamiento y configuracion general.", imgs: ["lcd1.jpg", "lcd2.jpg", "lcd3.jpg"] },
-        led: { title: "Tecnología Tv Led", desc: "Sistema de funcionamiento y configuracion general.", imgs: ["led1.jpg", "led2.jpg", "led3.jpg"] },
-        oled: { title: "Tecnología Tv Oled", desc: "Sistema de funcionamiento y configuracion general.", imgs: ["oled1.jpg", "oled2.jpg"] }
+        plasma: { t: "TV PLASMA", d: "Sistemas de alta tensión.", imgs: ["plasma1.jpg", "plasma2.jpg", "plasma3.jpg"] },
+        lcd: { t: "TV LCD", d: "Cristal líquido CCFL.", imgs: ["lcd1.jpg", "lcd2.jpg", "lcd3.jpg"] },
+        led: { t: "TV LED", d: "Retroiluminación por diodos.", imgs: ["led1.jpg", "led2.jpg", "led3.jpg"] },
+        oled: { t: "TV OLED", d: "Píxeles autoemisores 4K/8K.", imgs: ["oled1.jpg", "oled2.jpg"] }
     };
 
-    // --- DATOS VIDEOS ---
-    const misVideos = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4","video6.mp4","video7.mp4","video8.mp4","video9.mp4"];
+    const misVideos = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4", "video6.mp4"];
 
     function cargarCarrusel() {
         const track = document.getElementById('carruselFallas');
@@ -895,32 +245,14 @@
             </div>`;
         });
         track.innerHTML = html + html; 
-        track.style.width = `calc(220px * ${misVideos.length * 2})`;
     }
-function iniciarSlidersRepuestos() {
-        const sliders = document.querySelectorAll('.slider-repuesto');
-        sliders.forEach(slider => {
-            const imagenes = slider.querySelectorAll('img');
-            let index = 0;
-            if (imagenes.length > 1) {
-                setInterval(() => {
-                    imagenes[index].classList.remove('active');
-                    index = (index + 1) % imagenes.length;
-                    imagenes[index].classList.add('active');
-                }, 2000); // Cambio cada 2 segundos
-            }
-        });
-    }
-
-
-
-
 
     function abrirVideo(url) {
         const modal = document.getElementById('videoModal');
         const video = document.getElementById('reproductor');
         video.src = url;
-        video.muted = true; 
+        video.muted = true; // Forzado sin sonido
+        video.volume = 0;   // Doble seguridad de volumen
         modal.style.display = 'flex';
         video.play();
     }
@@ -933,40 +265,28 @@ function iniciarSlidersRepuestos() {
         modal.style.display = 'none';
     }
 
-    function cerrarVideoFuera(e) {
-        if (e.target.id === 'videoModal') cerrarVideo();
+    function openTech(k) {
+        const item = data[k];
+        let imgs = item.imgs.map(src => `<img src="${src}" style="width:100%; border-radius:10px; margin-top:10px; border:1px solid #333;">`).join('');
+        document.getElementById('mContent').innerHTML = `<h3 style="color:var(--neon-orange)">${item.t}</h3><p>${item.d}</p>${imgs}`;
+        document.getElementById('modalTech').style.display = 'block';
     }
 
-    function openTech(type) {
-        const item = data[type];
-        const modalBody = document.getElementById('modalBody');
-        modalBody.innerHTML = ""; 
-        let html = `<h2>${item.title}</h2><p>${item.desc}</p><div class="img-group">`;
-        item.imgs.forEach(img => {
-            const antiCache = "?v=" + new Date().getTime();
-            html += `<div style="margin-bottom:15px; background:#000; border-radius:10px; overflow:hidden; border:1px solid #333;">
-                        <img src="${img}${antiCache}" style="width:100%; display:block;" onerror="this.src='https://via.placeholder.com/500x300?text=Error:+Archivo+No+Encontrado';">
-                     </div>`;
-        });
-        html += `</div><p style="color:var(--primary-orange); margin-top:15px; font-weight:bold;">POWERTRONIZ v.2026</p>`;
-        modalBody.innerHTML = html;
-        document.getElementById('techModal').style.display = 'block';
+    function closeModal() { document.getElementById('modalTech').style.display = 'none'; }
+
+    function rotateRepuestos() {
+        setInterval(() => {
+            document.querySelectorAll('.r-slider').forEach(s => {
+                let imgs = s.querySelectorAll('img');
+                let active = s.querySelector('.active');
+                let next = active.nextElementSibling || imgs[0];
+                active.classList.remove('active');
+                next.classList.add('active');
+            });
+        }, 2800);
     }
 
-    function closeModal() { document.getElementById('techModal').style.display = 'none'; }
-    
-    window.onclick = function(event) { 
-        if (event.target.className === 'modal') closeModal(); 
-    }
-
-    window.onload = function() {
-      cargarCarrusel();
-      iniciarSlidersRepuestos();
-        
-        
-    };
+    window.onload = () => { cargarCarrusel(); rotateRepuestos(); };
 </script>
-
 </body>
 </html>
-
