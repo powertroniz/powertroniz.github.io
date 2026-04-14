@@ -2,264 +2,164 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POWERTRONIZ | Servicio Técnico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>POWERTRONIZ | Servicio Técnico Especializado</title>
     <style>
-        /* --- ESTILOS GENERALES --- */
+        /* --- BASES Y VARIABLES --- */
         :root {
             --primary-orange: #ff9900;
             --primary-yellow: #ffcc00;
-            --background-dark: #121212;
-            --text-light: #e0e0e0;
-            --card-bg: #1e1e1e;
+            --background-dark: #000000;
+            --card-bg: #121212;
+            --text-light: #ffffff;
             --accent-green: #2ecc71;
-            --modal-overlay: rgba(0, 0, 0, 0.9);
+            --header-height: 180px; /* Ajustado para el logo más grande */
         }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0; padding: 0;
             background-color: var(--background-dark);
             color: var(--text-light);
             overflow-x: hidden;
             width: 100%;
         }
 
-        /* --- CABECERA --- */
-        header {
-            background: url('lion_logo.png'); 
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 150px 0; 
-            border-bottom: 5px solid var(--primary-yellow);
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .brand-title-section {
+        /* --- ENCABEZADO FIJO EXPANDIDO --- */
+        .fixed-top {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 10000;
+            background-color: var(--background-dark);
+            border-bottom: 2px solid var(--primary-orange);
             text-align: center;
+        }
+
+        .brand-section { padding: 20px 0 5px 0; width: 100%; }
+       /* --- SECCIÓN CONTACTO MINIMALISTA --- */
+.contacto-simple {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contacto-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+}
+
+.contacto-link:hover {
+    border-color: var(--primary-orange);
+    transform: translateX(5px);
+    background: #222;
+}
+
+.contacto-label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contacto-label span {
+    font-size: 1.2rem;
+}
+
+.contacto-text h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--primary-yellow);
+    text-transform: uppercase;
+}
+
+.contacto-text p {
+    margin: 2px 0 0 0;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.flecha {
+    color: var(--primary-orange);
+    font-weight: bold;
+}
+ 
+        
+        
+        
+        
+        
+        
+        /* LOGO EXPANDIDO AL ANCHO */
+        .logo-main { 
+            font-size: 3.1rem; 
+            font-weight: 900; 
+            margin: 0; 
+            text-transform: uppercase; 
+            letter-spacing: -3px; 
+            line-height: 0.9;
+            display: block;
             width: 100%;
-            padding: 0 10px;
-            box-sizing: border-box;
+        }
+        .logo-main span { color: var(--primary-orange); }
+        .tagline { font-size: 0.65rem; letter-spacing: 3px; color: #aaa; margin-top: 5px; display: block; font-weight: bold; }
+
+        nav { padding: 20px 0; display: flex; flex-direction: column; gap: 10px; }
+        .nav-row { display: flex; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; }
+
+        /* --- SECCIÓN HERO (LION LOGO FULL) --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('lion_logo.png');
+            /* CAMBIO CLAVE: background-size cover para expandir en todo el ancho y alto */
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            padding-top: var(--header-height);
         }
 
-        .brand-title-section h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        .hero-title { font-size: 2.8rem; font-weight: 900; margin: 0; line-height: 1.1; padding: 0 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        .hero-subtitle { font-size: 1.1rem; margin: 20px 0; max-width: 85%; color: #fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); }
+        .btn-main { background: var(--primary-orange); color: black; text-decoration: none; padding: 18px 35px; border-radius: 50px; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; display: inline-block; box-shadow: 0 5px 15px rgba(255,153,0,0.3); }
 
-        /* --- SECCIÓN DE LOGOS --- */
+        /* --- SECCIONES --- */
+        section { scroll-margin-top: var(--header-height); padding: 40px 15px; }
+        .section-title { color: var(--primary-yellow); text-align: center; text-transform: uppercase; margin-bottom: 25px; font-size: 1.4rem; }
+
+        /* --- MARCAS --- */
         .brand-logos {
-            background: #000;
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 20px 10px;
-            margin: 15px 0;
+            background: #050505;
+            padding: 25px 0;
             border-top: 5px solid var(--primary-orange);
             border-bottom: 5px solid var(--primary-orange);
-            box-sizing: border-box;
-        }
-
-        .brand-logos img {
-            height: 25px;
-            max-width: 100px;
-            object-fit: contain;
-            filter: brightness(1.1);
-        }
-
-        /* --- CONTENEDORES --- */
-        .container {
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            padding: 0 15px;
-            box-sizing: border-box;
-        }
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .tech-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            padding: 15px 5px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
-        }
-        .tech-card:active { transform: scale(0.95); }
-        .tech-card span { display: block; font-weight: bold; font-size: 0.8rem; color: white; }
-        .tech-card small { color: var(--primary-yellow); font-size: 0.6rem; text-transform: uppercase; }
-
-        /* --- MODAL BIBLIOTECA --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10001;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: var(--modal-overlay);
-            overflow-y: auto;
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: var(--card-bg);
-            margin: 10% auto;
-            padding: 25px;
-            width: 85%;
-            max-width: 500px;
-            border-radius: 20px;
-            border: 2px solid var(--primary-orange);
-            position: relative;
-        }
-        
-               /* --- SECCIÓN DE REPUESTOS (NUEVA) --- */
-        .repuestos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-      
-        .repuesto-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 10px;
-            border: 1px solid #333;
-            text-align: center;
-        }
-        .slider-repuesto {
-            position: relative;
-            width: 100%;
-            height: 120px;
             overflow: hidden;
-            border-radius: 8px;
-            background: #000;
-            margin-bottom: 8px;
-        }
-        .slider-repuesto img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-        .slider-repuesto img.active {
-            opacity: 1;
-        }
-        .btn-consulta-repuesto {
-            display: block;
-            background: #25d366;
-            color: black;
-            text-decoration: none;
-            padding: 5px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.7rem;
-        } 
-        
-        
-
-        /* --- MODAL DE VIDEO (NUEVO) --- */
-        .video-modal {
-            display: none;
-            position: fixed;
-            z-index: 20000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            align-items: center;
-            justify-content: center;
-        }
-        .video-container {
-            position: relative;
-            width: 90%;
-            max-width: 800px;
-        }
-        .video-modal video {
-            width: 100%;
-            border: 3px solid var(--primary-orange);
-            border-radius: 15px;
-        }
-        /* Bloquear botón de volumen por CSS */
-        video::-webkit-media-controls-mute-button,
-        video::-webkit-media-controls-volume-slider {
-            display: none !important;
-        }
-        .btn-cerrar-video {
-            position: absolute;
-            top: -45px;
-            right: 0;
-            background: var(--primary-orange);
-            color: black;
-            border: none;
-            padding: 8px 15px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .img-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .img-group img { width: 100%; border-radius: 10px; border: 1px solid #444; }
-        
-        .description-section {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .description-text {
-            font-size: 1.1rem;
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        /* --- BOTÓN WHATSAPP --- */
-        .call-to-action {
-            display: block;
-            background: linear-gradient(to right, var(--primary-orange), var(--primary-yellow));
-            color: #000;
-            padding: 18px 10px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            margin: 10px auto;
-            width: 95%;
-            box-sizing: border-box;
-            font-size: 0.9rem;
-        }
-
-        /* --- TARJETAS DE SERVICIOS --- */
-        .services-grid {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
+        .brand-logos img { height: 28px; max-width: 100px; object-fit: contain; filter: brightness(1.2); }
 
-        .service-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 8px solid var(--primary-orange);
-            width: 100%;
-            box-sizing: border-box;
-        }
+        /* --- BIBLIOTECA TECH --- */
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .tech-card { background: var(--card-bg); border: 1px solid #333; padding: 15px 5px; border-radius: 10px; text-align: center; cursor: pointer; }
+        .tech-card span { display: block; font-weight: bold; font-size: 0.75rem; }
+        .tech-card small { color: var(--primary-orange); font-size: 0.6rem; }
 
-        /* --- SLIDER DE VIDEOS VIVOS --- */
+        /* --- CARRUSEL VIDEOS --- */
         .slider {
             width: 100%;
             overflow: hidden;
@@ -269,99 +169,209 @@
             border-top: 2px solid var(--primary-orange);
             border-bottom: 2px solid var(--primary-orange);
         }
+        .slider-track { display: flex; animation: scroll 35s linear infinite; width: max-content; }
+        .slide { width: 220px; padding: 0 10px; flex-shrink: 0; }
+        .video-mini { width: 100%; height: 125px; object-fit: cover; border-radius: 10px; cursor: pointer; border: 2px solid #444; background: #000; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .slider-track {
-            display: flex;
-            animation: scroll 35s linear infinite;
-        }
+        /* --- SERVICIOS --- */
+        .service-card { background-color: var(--card-bg); border-radius: 12px; padding: 25px; border-left: 8px solid var(--primary-orange); margin-bottom: 20px; position: relative; overflow: hidden; }
 
-        .slide {
-            width: 220px;
-            padding: 0 10px;
-            flex-shrink: 0;
-        }
+        /* --- REPUESTOS --- */
+        .repuestos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; }
+        .repuesto-card { background: var(--card-bg); border-radius: 10px; padding: 10px; border: 1px solid #333; text-align: center; }
+        .slider-repuesto { height: 100px; position: relative; overflow: hidden; margin-bottom: 8px; background: #000; border-radius: 5px; }
+        .slider-repuesto img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: 0.8s; }
+        .slider-repuesto img.active { opacity: 1; }
 
-        .video-mini {
-            width: 100%;
-            height: 125px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 2px solid #444;
-            background: #000;
-        }
+        /* --- CUIDADOS --- */
+        .cuidados-full { display: flex; flex-direction: column; width: 100%; }
+        .cuidado-block { width: 100%; position: relative; border-bottom: 4px solid var(--primary-orange); }
+        .cuidado-block img { width: 100%; height: auto; display: block; object-fit: cover; }
+        .cuidado-info { background: rgba(0, 0, 0, 0.85); color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 1rem; text-transform: uppercase; }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
-        }
+        /* --- MODALES --- */
+        .modal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; overflow-y: auto; }
+        .modal-content { background: var(--card-bg); padding: 25px; width: 90%; max-width: 500px; border-radius: 15px; border: 2px solid var(--primary-orange); position: relative; margin: 20px auto; }
+        .video-modal { display: none; position: fixed; z-index: 30000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+        .video-container { position: relative; width: 90%; max-width: 800px; }
+        .video-container video { width: 100%; border: 3px solid var(--primary-orange); border-radius: 15px; }
+        .btn-cerrar-video { position: absolute; top: -45px; right: 0; background: var(--primary-orange); color: black; border: none; padding: 8px 15px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .close { position: absolute; right: 15px; top: 10px; font-size: 30px; cursor: pointer; color: var(--primary-orange); }
 
-        /* --- WHATSAPP FLOTANTE --- */
-        .wa-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-        .wa-float img { width: 70%; }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: #000;
-            padding: 25px 0;
-            text-align: center;
-            border-top: 3px solid var(--primary-orange);
-            width: 100%;
-            margin-top: 30px;
-        }
+        /* WHATSAPP */
+        .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 10001; }
+        
+        footer { background: #000; padding: 30px 15px; text-align: center; border-top: 3px solid var(--primary-orange); margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<header></header>
+<div class="fixed-top">
+    <div class="brand-section">
+        <h1 class="logo-main">POWER<span>TRONIZ</span></h1>
+        <span class="tagline">SERVICIO TECNICO ESPECIALIZADO EN TV</span>
+    </div>
+    <nav>
+        <div class="nav-row">
+            <a href="#tecnologia">Tecnología</a>
+            <a href="#servicios">Servicio Técnico</a>
+            <a href="#repuestos">Repuestos</a>
+        </div>
+        <div class="nav-row">
+            <a href="#proteja su tv">Proteja su tv</a>
+             
+            <a href="#contacto">Contacto</a>
 
-<div class="brand-title-section">
-  <h1>POWERTRONIZ</h1>
-  <p>Servicio Técnico Especializado</p>
-  
-  <div class="brand-logos">
-    <img src="samsung.png" alt="Samsung">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg" alt="LG">
-    <img src="Hisense.png" alt="Hisense">
-    <img src="sony.png" alt="Sony">
-    <img src="jvc.png" alt="JVC">
-    <img src="aoc.png" alt="AOC">
-    <img src="tcl.png" alt="TCL">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg" alt="Hyundai">
-    <img src="daewoo.png" alt="Daewoo">
-  </div>
+        </div>
+        
+
+    </nav>
 </div>
 
-<section class="container">
-    <div class="description-section">
-        <h2 style="color: var(--primary-yellow);">Biblioteca Técnica Informativa </h2>
-        <p>Seleccione la tecnologia de su TV para informacion general :</p>
-        
-        <div class="tech-grid">
-            <div class="tech-card" onclick="openTech('plasma')"><small>SISTEMA</small><span>TV PLASMA</span></div>
-            <div class="tech-card" onclick="openTech('lcd')"><small>SISTEMA</small><span>TV LCD</span></div>
-            <div class="tech-card" onclick="openTech('led')"><small>SISTEMA</small><span>TV LED </span></div>
-            <div class="tech-card" onclick="openTech('oled')"><small>SISTEMA</small><span>TV OLED </span></div> 
-             <div class="tech-card" onclick="openTech('microled')"><small>SISTEMA</small><span>TV MICROLED </span></div>
+<section id="inicio" class="hero">
+    <h2 class="hero-title">¿Tu TV falló?<br>Nosotros lo reparamos</h2>
+    <p class="hero-subtitle">Atención Especializada a Domicilio en todo Lima Metropolitana.</p>
+    <a href="https://wa.me/51963514184" class="btn-main">REPARA MI TV YA! 📞</a>
+</section>
+
+<div class="brand-logos">
+    <img src="samsung.png" alt="Samsung">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg" alt="LG">
+    <img src="sony.png" alt="Sony">
+    <img src="tcl.png" alt="TCL">
+    <img src="Hisense.png" alt="Hisense">
+    <img src="aoc.png" alt="AOC">
+    <img src="jvc.png" alt="JVC">
+</div>
+
+<section id="tecnologia">
+    <h2 class="section-title">Biblioteca de Tecnología</h2>
+    <div class="tech-grid">
+        <div class="tech-card" onclick="openTech('plasma')"><small>SISTEMA</small><span>TV PLASMA</span></div>
+        <div class="tech-card" onclick="openTech('lcd')"><small>SISTEMA</small><span>TV LCD</span></div>
+        <div class="tech-card" onclick="openTech('led')"><small>SISTEMA</small><span>TV LED</span></div>
+        <div class="tech-card" onclick="openTech('oled')"><small>SISTEMA</small><span>TV OLED</span></div>
+        <div class="tech-card" onclick="openTech('microled')"><small>SISTEMA</small><span>TV MICROLED</span></div>
+    </div>
+</section>
+
+<section id="servicios">
+    <h2 class="section-title">SERVICIO DE DIAGNOSTICO Y REPARACION </h2>
+    <div class="slider">
+        <div class="slider-track" id="carruselFallas"></div>
+    </div>
+
+    <div class="service-card">
+        <h3 style="color: var(--primary-orange); margin-top:0;">Solucionamos Fallas</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom:8px;"><span style="color: var(--accent-green);">✓</span> IMÁGENES AZULES</li>  
+            <li style="margin-bottom:8px;"><span style="color: var(--accent-green);">✓</span> PUNTOS BLANCOS</li>
+            <li style="margin-bottom:8px;"><span style="color: var(--accent-green);">✓</span> RAYAS EN PANTALLA </li>
+            <li style="margin-bottom:8px;"><span style="color: var(--accent-green);">✓</span> REINICIOS</li>
+            <li style="margin-bottom:8px;"><span style="color: var(--accent-green);">✓</span> SIN IMAGEN CON SONIDO , ETC</li>
+        </ul>
+        <div style="position: absolute; right: -10px; bottom: 60px; width: 200px; opacity: 0.3;">
+            <img src="tecnico.png" alt="Técnico" style="width: 100%;">
+        </div>
+    </div>
+
+
+
+<section id="repuestos">
+    <h2 class="section-title">Repuestos Originales</h2>
+    <div class="repuestos-grid">
+        <div class="repuesto-card"><div class="slider-repuesto"><img src="fuente1.jpg" class="active"><img src="fuente2.jpg"></div><span>FUENTES</span></div>
+        <div class="repuesto-card"><div class="slider-repuesto"><img src="main1.jpg" class="active"><img src="main2.jpg"></div><span>MAINBOARD</span></div>
+        <div class="repuesto-card"><div class="slider-repuesto"><img src="tcon1.jpg" class="active"><img src="tcon2.jpg"></div><span>T-CON</span></div>
+        <div class="repuesto-card" style="grid-column: 1 / -1; margin-top: 10px;">
+            <div class="slider-repuesto" style="height: 150px;">
+                <img src="tirasleds1.jpg" class="active"><img src="tirasleds2.jpg"><img src="tirasleds3.jpg"><img src="tirasleds4.jpg">
+            </div>
+            <span style="color: var(--primary-yellow); font-weight: bold;">TIRAS LED - TODAS LAS MARCAS</span>
         </div>
     </div>
 </section>
 
+<section id="proteja su tv" style="padding: 40px 0 0 0;">
+    <h2 class="section-title">Cuidados de debe tener su TV</h2>
+    <div class="cuidados-full">
+        <div class="cuidado-block">
+            <img src="cuidado1.png" alt="Limpieza de pantalla">
+            <div class="cuidado-info">Limpieza segura con microfibra seca</div>
+        </div>
+        <div class="cuidado-block">
+            <img src="cuidado3.png" alt="Protección eléctrica">
+            <div class="cuidado-info">Uso de estabilizador de voltaje certificado</div>
+        </div>
+        <div class="cuidado-block">
+            <img src="cuidado2.png" alt="Ventilación">
+            <div class="cuidado-info">Mantener rejillas de ventilación libres</div>
+        </div>
+        <div class="cuidado-block">
+            <img src="cuidado4.png" alt="Humedad">
+            <div class="cuidado-info">Proteja su tv bajandole la luz de fondo de los leds </div>
+        </div>
+    </div>
+</section>
+
+<section id="contacto">
+    <h2 class="section-title">Conéctate con Nosotros</h2>
+    
+<div class="contacto-simple">
+    <div class="contacto-link">
+        <div class="contacto-label">
+            <span>📍</span>
+            <div class="contacto-text">
+                <h4>Ubicación</h4>
+                <p>Villa El Salvador - Lima, Perú</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/51963514184" target="_blank" class="contacto-link">
+        <div class="contacto-label">
+            <span><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="22"></span>
+            <div class="contacto-text">
+                <h4>WhatsApp Técnico</h4>
+                <p>+51 963 514 184</p>
+            </div>
+        </div>
+        <div class="flecha">→</div>
+    </a>
+
+    <a href="https://www.tiktok.com/@powertroniz" target="_blank" class="contacto-link">
+        <div class="contacto-label">
+            <span>📱</span>
+            <div class="contacto-text">
+                <h4>TikTok</h4>
+                <p>@powertroniz</p>
+            </div>
+        </div>
+        <div class="flecha">→</div>
+    </a>
+
+    <a href="mailto:powertronicz668@gmail.com" class="contacto-link">
+        <div class="contacto-label">
+            <span>✉️</span>
+            <div class="contacto-text">
+                <h4>Gmail</h4>
+                <p>powertronicz668@gmail.com</p>
+            </div>
+        </div>
+        <div class="flecha">→</div>
+    </a>
+</div>
+
+</section>
+
+
+
+
+
 <div id="techModal" class="modal">
     <div class="modal-content">
-        <span style="position:absolute; right:15px; top:10px; font-size:30px; cursor:pointer;" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeModal()">&times;</span>
         <div id="modalBody"></div>
     </div>
 </div>
@@ -369,132 +379,21 @@
 <div id="videoModal" class="video-modal" onclick="cerrarVideoFuera(event)">
     <div class="video-container">
         <button class="btn-cerrar-video" onclick="cerrarVideo()">CERRAR X</button>
-        <video id="reproductor" controls playsinline muted  loop controlsList="nodownload noplaybackrate">
+        <video id="reproductor" controls playsinline muted loop controlsList="nodownload noplaybackrate">
             <source src="" type="video/mp4">
         </video>
     </div>
 </div>
 
-<section class="description-section">
-    <div class="container">
-        <h2 style="color: var(--primary-yellow);">Expertos en TV a Domicilio</h2>
-        <p class="description-text">
-            Reparaciones profesionales con garantía para las marcas más reconocidas: LG, SAMSUNG, SONY y más.  
-            Atención personalizada A DOMICILIO en todo Lima Metropolitana.
-        </p>
-        <a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="call-to-action">
-            Escríbenos al WhatsApp aquí 📞
-        </a>
-    </div>
-</section>
-
-
-
-<section class="services-section">
-    <div class="container">
-        <div class="services-grid">
-            
-            <div class="service-card" style="position: relative; overflow: hidden; display: flex; align-items: center; min-height: 250px;">
-                <div style="flex: 1; z-index: 2; position: relative;">
-                    <h3 style="color: var(--primary-orange); margin-top:0;">Solucionamos Fallas</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><span style="color: var(--accent-green);">✓</span> IMÁGENES AZULES</li>
-                        <li style="margin-bottom: 8px;"><span style="color: var(--accent-green);">✓</span> PUNTOS BLANCOS</li>
-                        <li style="margin-bottom: 8px;"><span style="color: var(--accent-green);">✓</span> RAYAS EN PANTALLA</li>
-                        <li style="margin-bottom: 8px;"><span style="color: var(--accent-green);">✓</span> IMAGEN INESTABLE Y MÁS .</li>
-                    </ul>
-                </div>
-                <div style="position: absolute; right: -20px; bottom: 40px; width: 70%; max-width: 350px; z-index: 1; opacity: 0.4;">
-                    <img src="tecnico.png" alt="Técnico" style="width: 100%; height: auto; filter: drop-shadow(0 0 15px var(--primary-orange));">
-                </div>
-            </div>
-
-            <div class="slider">
-                <div class="slider-track" id="carruselFallas">
-                    </div>
-            </div>
-
-            <div class="service-card" style="position: relative; overflow: hidden; display: flex; align-items: center; min-height: 250px;">
-                <div style="flex: 1; z-index: 2; position: relative;">
-                    <h3 style="color: var(--primary-orange); margin-top:0;">¿Por qué elegirnos?</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><span style="color: var(--accent-green);">✓</span>Técnico Especializados </li>
-                        <li style="margin-bottom: 8px;"><span style="color: var(--accent-green);">✓</span>Diagnósticos Precisos</li>
-                        <li style="margin-bottom: 8px;"><span style="color: var(--accent-green);">✓</span> Servicio a Domicilio</li>
-                        <li style="margin-bottom: 8px;"><span style="color: var(--accent-green);">✓</span> Repuestos con Garantía .</li>
-                    </ul>
-                </div>
-                <div style="position: absolute; right: -20px; bottom: 40px; width: 70%; max-width: 350px; z-index: 1; opacity: 0.4;">
-                    <img src="tecnico1.png" alt="Técnico" style="width: 100%; height: auto; filter: drop-shadow(0 0 25px var(--primary-orange));">
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-        </div>
-    </div>
-</section>
-<section class="container">
-    <h2 style="color: var(--primary-yellow); text-align: center; font-size: 1.2rem;">Repuestos Originales</h2>
-    <div class="repuestos-grid">
-        <div class="repuesto-card">
-            <div class="slider-repuesto">
-                <img src="fuente1.jpg" class="active">
-                <img src="fuente2.jpg">
-            </div>
-            <span style="font-size: 0.7rem; color: white; display: block; margin-bottom: 5px;">FUENTES</span>
-        </div>
-
-        <div class="repuesto-card">
-            <div class="slider-repuesto">
-                <img src="main1.jpg" class="active">
-                <img src="main2.jpg">
-            </div>
-            <span style="font-size: 0.7rem; color: white; display: block; margin-bottom: 5px;">MAINBOARDS</span>
-        </div>
-
-        <div class="repuesto-card">
-            <div class="slider-repuesto">
-                <img src="Tcon1.jpg" class="active">
-                <img src="Tcon2.jpg">
-            </div>
-            <span style="font-size: 0.7rem; color: white; display: block; margin-bottom: 5px;">T-CON</span>
-        </div>
-
-        <div class="repuesto-card" style="grid-column: 1 / -1; margin-top: 10px;">
-            <div class="slider-repuesto" style="height: 150px;"> <img src="tirasleds4.jpg" class="active">
-                <img src="tirasleds1.jpg">
-                <img src="tirasleds2.jpg">
-                <img src="tirasleds3.jpg">
-            </div>
-            <span style="font-size: 0.8rem; color: var(--primary-yellow); font-weight: bold; display: block; margin-top: 5px;">TIRAS LED - TODAS LAS MARCAS</span>
-        </div>
-    </div>
-</section>
-
-
-
-
-
-
-
-<a href="https://wa.me/51963514184?text=Hola%20Powertroniz" class="wa-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Whatsapp">
-</a>
+<a href="https://wa.me/51963514184" class="wa-float"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35"></a>
 
 <footer>
-    <div class="container">
-        <p>&copy; 2026 POWERTRONIZ. Todos los derechos reservados.</p>
-        <p>Villa El Salvador y Lima Metropolitana.</p>
-    </div>
+    <p>&copy; 2026 POWERTRONIZ. Todos los derechos reservados.</p>
+    <p>Villa El Salvador y Lima Metropolitana.</p>
 </footer>
 
 <script>
-    // --- DATOS BIBLIOTECA ---
-    const data = {
+      const data = {
         plasma: { title: "Tecnología Tv Plasma", desc: "Genera luz mediante celdas de gas excitadas por alta tensión para iluminar fósforos de color.", imgs: ["plasma1.jpg", "plasma2.jpg", "plasma3.jpg"] },
         lcd: { title: "Tecnología Tv Lcd", desc: "Utiliza cristales líquidos para filtrar la luz blanca proveniente de lámparas fluorescentes traseras.", imgs: ["lcd1.jpg", "lcd2.jpg", "lcd3.jpg"] },
         led: { title: "Tecnología Tv Led", desc: "Emplea diodos LED para retroiluminar el panel LCD, permitiendo diseños más delgados y mayor eficiencia.", imgs: ["led1.jpg", "led2.jpg", "led3.jpg","led4.jpg","led5.jpg","led6.jpg"] },
@@ -502,8 +401,7 @@
         microled: { title: "Tecnología Tv microled", desc: "Tecnología de pantalla compuesta por millones de leds microscopicos inorganicosque funcionan de forma autónoma. ", imgs: ["microled1.jpg", "microled2.jpg","microled3.jpg"] }
     };
 
-    // --- DATOS VIDEOS ---
-    const misVideos = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4","video6.mp4","video7.mp4","video8.mp4","video9.mp4"];
+    const misVideos = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4", "video6.mp4", "video7.mp4", "video8.mp4", "video9.mp4"];
 
     function cargarCarrusel() {
         const track = document.getElementById('carruselFallas');
@@ -516,44 +414,24 @@
                 </video>
             </div>`;
         });
-        track.innerHTML = html + html; 
-        track.style.width = `calc(220px * ${misVideos.length * 2})`;
+        track.innerHTML = html + html;
     }
-function iniciarSlidersRepuestos() {
-        const sliders = document.querySelectorAll('.slider-repuesto');
-        sliders.forEach(slider => {
-            const imagenes = slider.querySelectorAll('img');
-            let index = 0;
-            if (imagenes.length > 1) {
-                setInterval(() => {
-                    imagenes[index].classList.remove('active');
-                    index = (index + 1) % imagenes.length;
-                    imagenes[index].classList.add('active');
-                }, 2000); // Cambio cada 2 segundos
-            }
-        });
-    }
-
-
-
-
 
     function abrirVideo(url) {
-        const modal = document.getElementById('videoModal');
         const video = document.getElementById('reproductor');
         video.src = url;
-        video.muted = true; 
-        video.loop = true;
-        modal.style.display = 'flex';
+        video.muted = true;
+        video.volume = 0;
+        document.getElementById('videoModal').style.display = 'flex';
         video.play();
     }
 
     function cerrarVideo() {
-        const modal = document.getElementById('videoModal');
         const video = document.getElementById('reproductor');
         video.pause();
         video.src = "";
-        modal.style.display = 'none';
+        
+        document.getElementById('videoModal').style.display = 'none';
     }
 
     function cerrarVideoFuera(e) {
@@ -577,18 +455,21 @@ function iniciarSlidersRepuestos() {
     }
 
     function closeModal() { document.getElementById('techModal').style.display = 'none'; }
-    
-    window.onclick = function(event) { 
-        if (event.target.className === 'modal') closeModal(); 
+
+    function init() {
+        cargarCarrusel();
+        setInterval(() => {
+            document.querySelectorAll('.slider-repuesto').forEach(slider => {
+                let imgs = slider.querySelectorAll('img'), 
+                    active = slider.querySelector('img.active'), 
+                    next = active.nextElementSibling || imgs[0];
+                active.classList.remove('active');
+                next.classList.add('active');
+            });
+        }, 2500);
     }
 
-    window.onload = function() {
-      cargarCarrusel();
-      iniciarSlidersRepuestos();
-        
-        
-    };
+    window.onload = init;
 </script>
-
 </body>
 </html>
